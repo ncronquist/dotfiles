@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+set -x
+
+export DEBIAN_FRONTEND=noninteractive
+
+# Versions
+V_NVIM=0.4.2 # https://github.com/neovim/neovim/releases
+V_TMUX=2.9 # https://github.com/tmux/tmux/releases
+
+
+usage() {
+    echo "
+usage: ubuntu.sh <command> [<args>]
+
+base                      install base required packages
+dotfiles                  gets dotfiles"
+}
+
+# Choose a user account to use for this installation
+get_user() {
+	if [ -z "${TARGET_USER-}" ]; then
+		mapfile -t options < <(find /home/* -maxdepth 0 -printf "%f\\n" -type d)
+		# if there is only one option just use that user
+		if [ "${#options[@]}" -eq "1" ]; then
+			readonly TARGET_USER="${options[0]}"
+			echo "Using user account: ${TARGET_USER}"
+			return
+		fi
+
+		# iterate through the user options and print them
+		PS3='command -v user account should be used? '
+
+		select opt in "${options[@]}"; do
+			readonly TARGET_USER=$opt
+			break
+		done
+	fi
+}
+
+check_is_sudo() {
+	if [ "$EUID" -ne 0 ]; then
+		echo "Please run as root."
+		exit
+	fi
+}
+
+app_exists() {
+    local app="$1"
+
+    if (! type "$app" >/dev/null 2>&1); then
+        # App doesn't exist
+        return 1
+    else
+	# App exists
+        return 0
+    fi
+}
+
+install_if_missing() {
+    local app="$1"
+
+    if app_exists "$app"; then
+    	echo "$app already installed"
+    else
+	    echo "$app not installed; installing now!"
+	    install_"$app"
+    fi
+}
+
+setup_sources() {
+    add-apt-repository --yes \
+        ppa:martin-frost/thoughtbot-rcm
+}
+
+install_nvim() {
+    curl -L https://github.com/neovim/neovim/releases/download/v${V_NVIM}/nvim.appimage -o /tmp/nvim.appimage
+    chmod +x /tmp/nvim.appimage
+    mv /tmp/nvim.appimage /usr/bin/nvim
+}
+
+install_tmux() {
+    rm -rf /tmp/tmux-${V_TMUX}
+    rm -rf /tmp/tmux-${V_TMUX}.tar.gz
+
+    curl -L https://github.com/tmux/tmux/releases/download/${V_TMUX}/tmux-${V_TMUX}.tar.gz -o /tmp/tmux-${V_TMUX}.tar.gz
+    tar xvzf /tmp/tmux-${V_TMUX}.tar.gz -C /tmp
+
+    # Create subshell
+    (
+    cd /tmp/tmux-${V_TMUX}
+
+    ./configure && make
+
+    make install
+    )
+    
+    rm -rf /tmp/tmux-${V_TMUX}
+    rm -rf /tmp/tmux-${V_TMUX}.tar.gz
+}
+
+install_scripts() {
+    install_if_missing nvim
+    install_if_missing tmux
+}
+
+base_min() {
+	apt update || true
+	apt -y upgrade
+
+	apt install -y \
+        apt-transport-https \
+		automake \
+		bc \
+        build-essential \
+		bzip2 \
+		ca-certificates \
+        caca-utils \
+        calibre \
+		coreutils \
+		curl \
+        djvulibre-bin \
+		dnsutils \
+        ffmpegthumbnailer \
+		file \
+		findutils \
+        fontforge \
+		gcc \
+		git \
+		gnupg \
+		gnupg2 \
+		grep \
+		gzip \
+        highlight \
+		hostname \
+        imagemagick-6.q16 \
+		indent \
+		iptables \
+		jq \
+		less \
+		libc6-dev \
+        libevent-dev \
+        libimage-exiftool-perl \
+        libncurses5-dev \
+		locales \
+		lsof \
+		make \
+		mount \
+		net-tools \
+        odt2txt \
+        p7zip-full \
+        pkg-config \
+        poppler-utils \
+        python-chardet \
+        ranger \
+        rcm \
+		silversearcher-ag \
+		ssh \
+		strace \
+		sudo \
+		tar \
+        transmission-cli \
+		tree \
+		tzdata \
+		unzip \
+        w3m \
+		xz-utils \
+		zip \
+        zsh \
+		--no-install-recommends
+
+	apt autoremove -y
+	apt autoclean
+	apt clean
+
+	install_scripts
+
+    chsh -s $(which zsh)
+}
+
+base() {
+    base_min;
+}
+
+main() {
+    local command="$1"
+    case $command in
+        "" | "-h" | "--help")
+            usage
+            ;;
+        "base")
+            check_is_sudo
+            get_user
+            setup_sources
+            base
+            ;;
+        "dotfiles")
+            get_user
+            get_dotfiles
+            ;;
+        *)
+            usage
+            ;;
+    esac 
+}
+
+main "$@"
