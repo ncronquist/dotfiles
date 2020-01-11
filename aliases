@@ -1,1 +1,15 @@
 # Shell Aliases
+alias l='ls --color=always -Aoh --time-style=long-iso'
+alias ls='ls --color=always'
+alias reload="source $HOME/.zshrc"
+
+# Editor
+alias vi='nvim'
+alias vim='nvim'
+
+# Git Aliases
+alias gs='git status'
+alias gb='git branch'
+alias gco='git checkout'
+alias gcm='git checkout master && git pull && git pull origin master'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
