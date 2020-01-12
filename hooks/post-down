@@ -30,3 +30,8 @@ fi
 if [[ -d "$HOME/.config/zsh-syntax-highlighting" ]]; then
   rm -rf "$HOME/.config/zsh-syntax-highlighting"
 fi
+
+# Remove Tmux Plugins
+if [[ -d "$HOME/.tmux" ]]; then
+  rm -rf "$HOME/.tmux"
+fi

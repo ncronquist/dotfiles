@@ -36,7 +36,7 @@ if [[ ! -d "$HOME/.config/zsh-history-substring-search" ]]; then
   fi
 fi
 
-# Grab zsh-syntax-highlighting
+# Download zsh-syntax-highlighting
 # https://github.com/zsh-users/zsh-syntax-highlighting
 if [[ ! -d "$HOME/.config/zsh-syntax-highlighting" ]]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
@@ -50,4 +50,10 @@ if [[ ! -d "$HOME/.config/zsh-syntax-highlighting" ]]; then
   if [[ ! -L "$HOME/.local/share/zsh/functions/zsh-syntax-highlighting" ]]; then
     ln -s "$HOME/.config/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" "$HOME/.local/share/zsh/functions/zsh-syntax-highlighting"
   fi
+fi
+
+# Grab Tmux Plugin Manager
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+  git clone https://github.com/tmux-plugins/tpm.git \
+    "$HOME/.tmux/plugins/tpm"
 fi
