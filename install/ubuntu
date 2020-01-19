@@ -74,6 +74,12 @@ setup_sources() {
     ppa:martin-frost/thoughtbot-rcm
 }
 
+install_nvim_extras() {
+  # Install python nvim integration
+  sudo -H -u "$TARGET_USER" pip2 install --user --upgrade pynvim
+  sudo -H -u "$TARGET_USER" pip3 install --user --upgrade pynvim
+}
+
 install_nvim() {
   curl -L https://github.com/neovim/neovim/releases/download/v${V_NVIM}/nvim.appimage -o /tmp/nvim.appimage
   chmod +x /tmp/nvim.appimage
@@ -100,9 +106,28 @@ install_tmux() {
   rm -rf /tmp/tmux-${V_TMUX}.tar.gz
 }
 
+install_fzf() {
+  if ! [[ -d "$HOME/.fzf" ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    # Install fzf using the fzf install script with the following arguments:
+    # - key-bindings - enable key bindings (ctrl-t, ctrl-r, alt-c)
+    # - completion - Enable fuzzy completion
+    # - no-update-rc - don't update the shell configuration files (it's already updated in this 
+    #   dotfiles configuration
+    # - no-bash - since these dotfiles expect zsh
+    # - no-fish - since these dotfiles expect zsh
+    # - 64 - 64-bit binary instead of 32
+    ~/.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish --64
+  else
+    echo "fzf already instealled; skipping"
+  fi
+}
+
 install_scripts() {
   install_if_missing nvim
+  install_nvim_extras
   install_if_missing tmux
+  install_fzf
 }
 
 base_min() {
@@ -175,6 +200,11 @@ base_min() {
   apt autoremove -y
   apt autoclean
   apt clean
+
+  # Upgrade setuptools
+  # Setuptools is a tool to download, build, install, upgrade, and uninstall Python packages
+  sudo -H -u "$TARGET_USER" pip2 install --user --upgrade setuptools
+  sudo -H -u "$TARGET_USER" pip3 install --user --upgrade setuptools
 
   install_scripts
 
