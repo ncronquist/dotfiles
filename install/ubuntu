@@ -154,6 +154,8 @@ base_min() {
         pkg-config \
         poppler-utils \
         python-chardet \
+        python-pip \
+        python3-pip \
         ranger \
         rcm \
 		silversearcher-ag \
