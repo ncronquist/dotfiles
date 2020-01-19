@@ -1,0 +1,15 @@
+# http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Default settings
+[*]
+end_of_line = lf # Line feed - standard linux newline (\n)
+trim_trailing_whitespace = true
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+
+[Makefile]
+indent_style = tab
