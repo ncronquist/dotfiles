@@ -30,7 +30,7 @@ Shortcut           | Description
 -------------------|-------------
 `Ctrl + <space>`   | Default prefix
 `Prefix + ?`       | Show all shortcuts
-`Prefix + |`       | Split window horizontally
+`Prefix + \|`      | Split window horizontally
 `Prefix + -`       | Split window vertically
 `Prefix + p`       | Switch to previous window (tmux-sensible)
 `Prefix + n`       | Switch to next window (tmux-sensible)
