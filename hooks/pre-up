@@ -52,8 +52,14 @@ if [[ ! -d "$HOME/.config/zsh-syntax-highlighting" ]]; then
   fi
 fi
 
-# Grab Tmux Plugin Manager
+# Download Tmux Plugin Manager
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
   git clone https://github.com/tmux-plugins/tpm.git \
     "$HOME/.tmux/plugins/tpm"
+fi
+
+# Download Vim-Plug for Managing Vim Plugins
+if [[ ! -f "$HOME/.local/share/nvim/site/autoload/plug.vim" ]]; then
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi

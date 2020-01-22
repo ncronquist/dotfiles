@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Update vim-plug
+if [[ -f "$HOME/.local/share/nvim/site/autoload/plug.vim" ]]; then
+  nvim -E -s +PlugUpgrade +qa
+  nvim -u "$HOME/.config/nvim/init.vim" +PlugUpdate +PlugClean! +qa
+fi
+
