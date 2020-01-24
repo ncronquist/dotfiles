@@ -4,6 +4,17 @@ Dotfiles
 Dotfiles focused on creating an intuitive and beautiful terminal experience.
 
 
+Prerequisites
+--------------
+
+- Most of the dependencies will get automatically installed with the installation script, but fonts
+  must be installed separately. So far, I've only gotten delugia code to work, but in theory all
+  Powerline fonts should work
+  - [Delugia Code](https://github.com/adam7/delugia-code)
+  - [Powerline Fonts GitHub](https://github.com/powerline/fonts)
+  - [Install Powerline Fonts in Windows](https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58)
+
+
 Keyboard Shortcuts
 -------------------
 
@@ -28,7 +39,7 @@ Shortcut           | Description
 
 Shortcut           | Description
 -------------------|-------------
-`Ctrl + <space>`   | Default prefix
+`Ctrl + <space>`   | Prefix
 `Prefix + ?`       | Show all shortcuts
 `Prefix + \|`      | Split window horizontally
 `Prefix + -`       | Split window vertically
@@ -46,7 +57,10 @@ Shortcut           | Description
 
 Shortcut           | Description
 -------------------|-------------
+`<Space>`          | Leader
 `Ctrl-p`           | fzf - fuzzy file finder
+`Ctrl-b`           | NERDTree - Toggle file tree
+`Ctrl-f`           | NERDTree - Find open file in file tree
 
 
 Thanks
