@@ -17,6 +17,10 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Adds filetype icons to nerdtree
 Plug 'ryanoasis/vim-devicons'
 
+" Plugin to manage editorconfig
+" https://editorconfig.org/
+Plug 'editorconfig/editorconfig-vim'
+
 call plug#end()
 
 
