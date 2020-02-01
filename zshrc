@@ -4,6 +4,11 @@
 # globbing
 setopt extendedglob
 
+# If a pattern does not match, then pass it through as
+# an argument to the command rather than throwing an error
+# This allows for things like `git diff HEAD^`
+setopt no_nomatch
+
 # This function loads zsh configurations from ~/.zsh/configs/pre,
 # ~/.zsh/configs, and ~/.zsh/configs/post in that order.
 _load_settings() {
