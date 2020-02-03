@@ -2,7 +2,6 @@
 
 set -e
 set -o pipefail
-set -x
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -15,7 +14,8 @@ usage() {
 usage: ubuntu.sh <command> [<args>]
 
 base                      install base required packages
-dotfiles                  gets dotfiles"
+dotfiles                  gets dotfiles
+asdf                      install asdf version manager"
 }
 
 # Choose a user account to use for this installation
@@ -112,7 +112,7 @@ install_fzf() {
     # Install fzf using the fzf install script with the following arguments:
     # - key-bindings - enable key bindings (ctrl-t, ctrl-r, alt-c)
     # - completion - Enable fuzzy completion
-    # - no-update-rc - don't update the shell configuration files (it's already updated in this 
+    # - no-update-rc - don't update the shell configuration files (it's already updated in this
     #   dotfiles configuration
     # - no-bash - since these dotfiles expect zsh
     # - no-fish - since these dotfiles expect zsh
@@ -136,6 +136,7 @@ base_min() {
 
   apt install -y \
     apt-transport-https \
+    autoconf \
     automake \
     bc \
     build-essential \
@@ -145,6 +146,7 @@ base_min() {
     calibre \
     coreutils \
     curl \
+    dirmngr \
     djvulibre-bin \
     dnsutils \
     ffmpegthumbnailer \
@@ -155,6 +157,7 @@ base_min() {
     git \
     gnupg \
     gnupg2 \
+    gpg \
     grep \
     gzip \
     highlight \
@@ -166,8 +169,14 @@ base_min() {
     less \
     libc6-dev \
     libevent-dev \
+    libffi-dev \
     libimage-exiftool-perl \
     libncurses5-dev \
+    libreadline-dev \
+    libssl-dev \
+    libtool \
+    libyaml-dev \
+    libxslt-dev \
     locales \
     lsof \
     make \
@@ -190,6 +199,7 @@ base_min() {
     transmission-cli \
     tree \
     tzdata \
+    unixodbc-dev \
     unzip \
     w3m \
     xz-utils \
@@ -215,6 +225,14 @@ base() {
   base_min
 }
 
+install_asdf() {
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  (
+    cd ~/.asdf
+    git checkout "$(git describe --abbrev=0 --tags)"
+  )
+}
+
 main() {
   local command="$1"
   case $command in
@@ -230,6 +248,9 @@ main() {
   "dotfiles")
     get_user
     get_dotfiles
+    ;;
+  "asdf")
+    install_asdf
     ;;
   *)
     usage
