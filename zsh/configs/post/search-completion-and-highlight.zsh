@@ -13,7 +13,7 @@ source "$HOME/.local/share/zsh/functions/zsh-history-substring-search"
 # https://github.com/zsh-users/zsh-history-substring-search
 # The binding has to happen after the zsh-history-substring-search
 # function has been sourced
-if [[ -z "$WSL_DISTRO_NAME" ]]; then
+if [[ -z "$WSL_DISTRO_NAME" && -v "$WSLENV" ]]; then
   bindkey '^[[A' history-substring-search-up
   bindkey '^[[B' history-substring-search-down
 else
