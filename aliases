@@ -2,6 +2,7 @@
 alias l='ls --color=always -Aoh --time-style=long-iso'
 alias ls='ls --color=always'
 alias reload="source $HOME/.zshrc"
+alias fdiff='diff --suppress-common-lines --minimal --side-by-side --ignore-all-space --color=always'
 
 # Editor
 alias vi='nvim'
@@ -10,6 +11,17 @@ alias vim='nvim'
 # Git Aliases
 alias gs='git status'
 alias gb='git branch'
+alias gd='git branch -D'
 alias gco='git checkout'
 alias gcm='git checkout master && git pull && git pull origin master'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+# Directory Aliases
+alias pj='cd $HOME/Documents/projects'
+if [[ -d "/c/Users/cronquin/projects/notes" ]]; then
+  alias n="cd /c/Users/cronquin/projects/notes"
+fi
+
+# Terraform
+alias tf='terraform'
+alias s='sentinel'
