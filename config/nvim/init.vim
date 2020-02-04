@@ -91,11 +91,11 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " ========== NERDTree ==========
 
-" Open Nerdtree like file tree on VSCode
-map <C-b> :NERDTreeToggleVCS<CR>
+" Toggle NERDTree
+noremap <Leader>n :NERDTreeToggleVCS<CR>
 
 " Open Nerdtree to currently open file
-map <C-f> :NERDTreeFind<CR>
+noremap <Leader>f :NERDTreeFind<CR>
 
 " Show Dot Files in NERDTree
 let NERDTreeShowHidden=1
