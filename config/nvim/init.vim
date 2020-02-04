@@ -23,6 +23,9 @@ Plug 'ryanoasis/vim-devicons'
 " https://editorconfig.org/
 Plug 'editorconfig/editorconfig-vim'
 
+" Rooter changes working directory to project root
+Plug 'airblade/vim-rooter'
+
 call plug#end()
 
 "=====================================================================
