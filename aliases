@@ -5,6 +5,9 @@ alias reload="source $HOME/.zshrc"
 alias fdiff='diff --suppress-common-lines --minimal --side-by-side --ignore-all-space --color=always'
 alias ssha='eval $(ssh-agent -s) && ssh-add'
 
+# Package Manager
+alias apt-remove='sudo apt-get purge'
+
 # Editor
 alias vi='nvim'
 alias vim='nvim'
