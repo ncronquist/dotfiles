@@ -2,6 +2,8 @@
 " Plugins
 "=====================================================================
 
+" Use vim-plug for managing vim plugins
+" https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
 " fzf allows for fuzzy file finding both in zsh and vim
@@ -23,6 +25,32 @@ Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
+"=====================================================================
+" Style
+"=====================================================================
+
+" Set the line number coloring to dark gray
+highlight LineNr ctermfg=DarkGrey
+
+" Turn on highlighting for the current line number
+set cursorline
+highlight CursorLine cterm=NONE
+highlight CursorLineNr ctermbg=DarkGrey
+
+"=====================================================================
+" Settings
+"=====================================================================
+
+set number                      " Show line numbers
+set ignorecase                  " Search case insensitive...
+set smartcase                   " ... but not it begins with upper case
+set clipboard+=unnamedplus      " Use the system clipboard by default
+set mouse=a                     " Enable mouse support
+set undofile                    " Save undos after file closes
+set undodir=~/.cache/vim        " where to save undo histories
+set hidden                      " Hide buffer with unsaved changes
+                                "   instead of closing it when new
+                                "   buffers are opened
 
 "=====================================================================
 " Mappings
@@ -43,6 +71,9 @@ nnoremap <leader>k <C-W>k
 nnoremap <leader>h <C-W>h
 nnoremap <leader>l <C-W>l
 
+" Remove search highlights (after searching for text, space-space
+" will remove the highlighting)
+nnoremap <leader><space> :nohlsearch<CR>
 
 "=====================================================================
 " Plugin Specific Mappings and Configuration
