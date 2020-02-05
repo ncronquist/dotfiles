@@ -26,6 +26,12 @@ Plug 'editorconfig/editorconfig-vim'
 " Rooter changes working directory to project root
 Plug 'airblade/vim-rooter'
 
+" Adds a collection of language packs for vim
+" Only supports syntax and indentation; Other features are skipped
+" If more functionality is needed for any lanuage, that specific language
+" plugin must be installed
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 "=====================================================================
