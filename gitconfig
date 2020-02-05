@@ -2,3 +2,5 @@
 	pager = less -+$LESS -R
 [user]
 	name = Nicholas Cronquist
+[commit]
+	template = ~/.gitmessage
