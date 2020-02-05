@@ -32,7 +32,11 @@ Plug 'airblade/vim-rooter'
 " plugin must be installed
 Plug 'sheerun/vim-polyglot'
 
+" Allows for quickly commenting/uncommenting code
+Plug 'preservim/nerdcommenter'
+
 call plug#end()
+
 
 "=====================================================================
 " Style
@@ -45,6 +49,7 @@ highlight LineNr ctermfg=DarkGrey
 set cursorline
 highlight CursorLine cterm=NONE
 highlight CursorLineNr ctermbg=DarkGrey
+
 
 "=====================================================================
 " Settings
@@ -60,6 +65,7 @@ set undodir=~/.cache/vim        " where to save undo histories
 set hidden                      " Hide buffer with unsaved changes
                                 "   instead of closing it when new
                                 "   buffers are opened
+
 
 "=====================================================================
 " Mappings
@@ -84,18 +90,23 @@ nnoremap <leader>l <C-W>l
 " will remove the highlighting)
 nnoremap <leader><space> :nohlsearch<CR>
 
+
 "=====================================================================
 " Plugin Specific Mappings and Configuration
 "=====================================================================
 
-" ========== fzf ==========
+
+" fzf
+" ====================================================================
 
 " Set ctrl+p to fuzzy file search with fzf similar to VSCode
 nnoremap <C-p> :<C-u>FZF<CR>
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-" ========== NERDTree ==========
+
+" NERDTree
+" ====================================================================
 
 " Toggle NERDTree
 noremap <Leader>n :NERDTreeToggleVCS<CR>
@@ -112,3 +123,18 @@ let NERDTreeMinimalUI = 1
 " Close vim if Nerdtree is the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+
+" NerdCommenter
+"=====================================================================
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
