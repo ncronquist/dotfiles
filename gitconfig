@@ -1,6 +1,14 @@
 [core]
 	pager = less -+$LESS -R
+	excludesFile = ~/.gitignore
+	autocrlf = input
 [user]
 	name = Nicholas Cronquist
 [commit]
 	template = ~/.gitmessage
+[fetch]
+	prune = true
+[rebase]
+	autosquash = true
+[push]
+	default = current
