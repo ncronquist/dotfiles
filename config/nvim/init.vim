@@ -35,6 +35,9 @@ Plug 'sheerun/vim-polyglot'
 " Allows for quickly commenting/uncommenting code
 Plug 'preservim/nerdcommenter'
 
+" Displays git diff in the gutter (sign column)
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 
@@ -138,3 +141,16 @@ let g:NERDCommentEmptyLines = 1
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
+
+
+" vim-gitgutter
+"=====================================================================
+
+" Set added line symbol (+) to be green
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+
+" Set changed line symbol (~) to be yellow
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+
+" Set deleted line symbol (-) to be red
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
