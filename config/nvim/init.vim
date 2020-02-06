@@ -41,6 +41,10 @@ Plug 'airblade/vim-gitgutter'
 " Adds status/tabline at the bottom of vim panes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Nord theme - https://www.nordtheme.com/
+Plug 'arcticicestudio/nord-vim'
+
 call plug#end()
 
 
@@ -48,14 +52,14 @@ call plug#end()
 " Style
 "=====================================================================
 
-" Set the line number coloring to dark gray
-highlight LineNr ctermfg=DarkGrey
-
 " Turn on highlighting for the current line number
 set cursorline
-highlight CursorLine cterm=NONE
-highlight CursorLineNr ctermbg=DarkGrey
+let g:nord_cursor_line_number_background = 1
 
+" Turn on the nord colorscheme
+" All configuration variables must be set **before** the colorscheme
+" activation command
+colorscheme nord
 
 "=====================================================================
 " Settings
