@@ -38,6 +38,9 @@ Plug 'preservim/nerdcommenter'
 " Displays git diff in the gutter (sign column)
 Plug 'airblade/vim-gitgutter'
 
+" Adds status/tabline at the bottom of vim panes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 
@@ -93,6 +96,10 @@ nnoremap <leader>l <C-W>l
 " will remove the highlighting)
 nnoremap <leader><space> :nohlsearch<CR>
 
+" Use tab and shift tab to switch between buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
 
 "=====================================================================
 " Plugin Specific Mappings and Configuration
@@ -100,7 +107,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 
 " fzf
-" ====================================================================
+"=====================================================================
 
 " Set ctrl+p to fuzzy file search with fzf similar to VSCode
 nnoremap <C-p> :<C-u>FZF<CR>
@@ -109,7 +116,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 
 " NERDTree
-" ====================================================================
+"=====================================================================
 
 " Toggle NERDTree
 noremap <Leader>n :NERDTreeToggleVCS<CR>
@@ -154,3 +161,16 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 
 " Set deleted line symbol (-) to be red
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+
+" vim-airline
+"=====================================================================
+
+" Automatically display all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
+
+" Set the path formatter for the filename
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" Populate the airline sybmols dictionary with powerline symbols
+let g:airline_powerline_fonts = 1
