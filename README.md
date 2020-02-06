@@ -71,7 +71,7 @@ Shortcut           | Description
 
 ### Vim
 
-Shortcut               | Description
+Shortcut / Command     | Description
 -----------------------|-------------
 `<Space>`              | Leader
 `Ctrl-p`               | fzf - fuzzy file finder
@@ -83,14 +83,14 @@ Shortcut               | Description
 `Leader + c + u`       | NERDCommenter - Uncomment line
 `Leader + c + <space>` | NERDCommenter - Toggle comment
 `Leader + -`           | Split pane down
-`Leader + |`           | Split pane right
+`Leader + \|`          | Split pane right
 `Leader + j`           | Switch to pane down
 `Leader + k`           | Switch to pane up
 `Leader + h`           | Switch to pane left
 `Leader + l`           | Switch to pane right
-Command `/`            | Search for text
+`/`                    | Search for text
 `Leader + <space>`     | Clear search highlights
-Command `:bd`          | Close buffer
+`:bd`                  | Close buffer
 
 
 Thanks
@@ -100,7 +100,9 @@ Thanks to [Thoughtbot] and [Dragan] for the inspiration and the framework this r
 I chose not to fork one of their repos because I don't intend to contribute my personal
 preferences upstream. That being said, the framework/organization of this repo was
 originally designed by Thoughtbot and Dragan was my inspiration for formally tracking
-my dotfiles and using the Thoughtbot layout.
+my dotfiles and using the Thoughtbot layout. Also thanks to [jessfraz] for most of my
+install script.
 
 [Thoughtbot]: https://github.com/thoughtbot/dotfiles
 [Dragan]: https://github.com/dragan/dotfiles
+[jessfraz]: https://github.com/jessfraz/dotfiles/blob/master/bin/install.sh
