@@ -15,6 +15,21 @@ Prerequisites
   - [Install Powerline Fonts in Windows](https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58)
 
 
+Installation
+------------
+
+Todo: Automate this part with some sort of curl | script.
+
+For now:
+
+- Clone this repo to `~/.dotfiles`
+- Change into the install directory
+- Run `sudo ./ubuntu base` to install the base requirements
+- Run `./ubnutu asdf` to install asdf, the runtime version manager
+- Start tmux `tmux new-session` and press `Ctrl-space + I` to install the tmux plugins
+- Potentially want to restart your terminal
+
+
 Keyboard Shortcuts
 -------------------
 
@@ -33,6 +48,7 @@ Shortcut           | Description
 `Alt-c`            | fzf - cd into the selected directory
 `Ctrl-t`           | fzf - Paste the selected files and directories onto the command-line
 `Ctrl-r`           | fzf - Paste the selected command from history onto the command-line
+`arrow-up`         | zsh-history-substring-search - Search up through history; Typing search term first will limit searching to that term
 
 
 ### Tmux
@@ -55,12 +71,26 @@ Shortcut           | Description
 
 ### Vim
 
-Shortcut           | Description
--------------------|-------------
-`<Space>`          | Leader
-`Ctrl-p`           | fzf - fuzzy file finder
-`Ctrl-b`           | NERDTree - Toggle file tree
-`Ctrl-f`           | NERDTree - Find open file in file tree
+Shortcut               | Description
+-----------------------|-------------
+`<Space>`              | Leader
+`Ctrl-p`               | fzf - fuzzy file finder
+`Tab`                  | Switch between buffers
+`Shift-Tab`            | Switch between buffers reverse order
+`Leader + n`           | NERDTree - Toggle file tree
+`Leader + f`           | NERDTree - Find open file in file tree
+`Leader + c + c`       | NERDCommenter - Comment line
+`Leader + c + u`       | NERDCommenter - Uncomment line
+`Leader + c + <space>` | NERDCommenter - Toggle comment
+`Leader + -`           | Split pane down
+`Leader + |`           | Split pane right
+`Leader + j`           | Switch to pane down
+`Leader + k`           | Switch to pane up
+`Leader + h`           | Switch to pane left
+`Leader + l`           | Switch to pane right
+Command `/`            | Search for text
+`Leader + <space>`     | Clear search highlights
+Command `:bd`          | Close buffer
 
 
 Thanks
