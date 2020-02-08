@@ -4,6 +4,7 @@
 	autocrlf = input
 [user]
 	name = Nicholas Cronquist
+	useConfigOnly = true
 [commit]
 	template = ~/.gitmessage
 [fetch]
