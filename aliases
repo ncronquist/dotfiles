@@ -14,11 +14,12 @@ alias vim='nvim'
 
 # Git Aliases
 alias gs='git status'
+alias gd='git diff'
 alias gb='git branch'
-alias gd='git branch -D'
+alias gbd='git branch -D'
 alias gco='git checkout'
 alias gcm='git checkout master && git pull && git pull origin master'
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 # Directory Aliases
 alias pj='cd $HOME/Documents/projects'
