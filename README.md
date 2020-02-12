@@ -39,6 +39,7 @@ be some just for reference.
 Note:
 - `Key + key` means press the first key or key combination, and then press the second key
 - `Key-key` means press both keys at the same time
+- `⬅ ⬆ ⬇ ➡` refer to the keyboard arrow keys
 
 
 ### Zsh
@@ -48,7 +49,7 @@ Shortcut           | Description
 `Alt-c`            | fzf - cd into the selected directory
 `Ctrl-t`           | fzf - Paste the selected files and directories onto the command-line
 `Ctrl-r`           | fzf - Paste the selected command from history onto the command-line
-`arrow-up`         | zsh-history-substring-search - Search up through history; Typing search term first will limit searching to that term
+`⬆`                | zsh-history-substring-search - Search up through history; Typing search term first will limit searching to that term
 
 
 ### Tmux
@@ -61,6 +62,8 @@ Shortcut           | Description
 `Prefix + -`       | Split window vertically
 `Prefix + p`       | Switch to previous window (tmux-sensible)
 `Prefix + n`       | Switch to next window (tmux-sensible)
+`Ctrl-Shift-⬅`     | Move current window left
+`Ctrl-Shift-➡`     | Move current window right
 `Prefix + [`       | Switch to Copy Mode
 `v`                | Start copy selection in copy mode
 `y`                | Copy selection in copy mode
