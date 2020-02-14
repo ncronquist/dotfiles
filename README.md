@@ -91,7 +91,8 @@ Shortcut / Command     | Description
 `Leader + k`           | Switch to pane up
 `Leader + h`           | Switch to pane left
 `Leader + l`           | Switch to pane right
-`/`                    | Search for text
+`/`                    | Search for text in current file
+`Leader + /`           | Search for text in the current project
 `Leader + <space>`     | Clear search highlights
 `:bd`                  | Close buffer
 

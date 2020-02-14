@@ -10,6 +10,9 @@ call plug#begin('~/.vim/plugged')
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 
+" ack allows for recursively searching through text in a directory
+Plug 'mileszs/ack.vim'
+
 " Nerdtree is a filetree for vim
 Plug 'preservim/nerdtree'
 " Nerdtree-git-plugin shows the git status of files in nerdtree
@@ -178,3 +181,16 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Populate the airline sybmols dictionary with powerline symbols
 let g:airline_powerline_fonts = 1
+
+
+" ack
+"=====================================================================
+
+" Use ag, the silver searcher, to do searches with the ack plugin
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Since / is used for text seaching a single file, Leader + /
+" seemed like a good option for text searching a directory
+nnoremap <Leader>/ :Ack!<Space>
