@@ -15,7 +15,8 @@ usage: ubuntu.sh <command> [<args>]
 
 base                      install base required packages
 dotfiles                  gets dotfiles
-asdf                      install asdf version manager"
+asdf                      install asdf version manager
+pipx                      install pipx - for running python apps in virtual environments"
 }
 
 # Choose a user account to use for this installation
@@ -233,6 +234,11 @@ install_asdf() {
   )
 }
 
+install_pipx() {
+  python3 -m pip install --user pipx
+  python3 -m pipx ensurepath
+}
+
 main() {
   local command="$1"
   case $command in
@@ -251,6 +257,9 @@ main() {
     ;;
   "asdf")
     install_asdf
+    ;;
+  "pipx")
+    install_pipx
     ;;
   *)
     usage
