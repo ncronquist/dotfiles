@@ -25,8 +25,8 @@ For now:
 - Clone this repo to `~/.dotfiles`
 - Change into the install directory
 - Run `sudo ./ubuntu base` to install the base requirements
-- Run `./ubnutu asdf` to install asdf, the runtime version manager
-- Start tmux `tmux new-session` and press `Ctrl-space + I` to install the tmux plugins
+- Run `./ubuntu asdf` to install asdf, the runtime version manager
+- Run `./ubuntu pipx` to install pipx, for running python apps in virtual environments
 - Potentially want to restart your terminal
 
 

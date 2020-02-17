@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+TMUX_PLUGIN_DIR="$HOME/.tmux/plugins/tpm/bin"
+
+# Install tmux plugins
+${TMUX_PLUGIN_DIR}/install_plugins
+
+# Update tmux plugins
+${TMUX_PLUGIN_DIR}/update_plugins all
+
+# Remove plugsins no longer in the plugin list
+${TMUX_PLUGIN_DIR}/clean_plugins
+
 # Update vim-plug
 if [[ -f "$HOME/.local/share/nvim/site/autoload/plug.vim" ]]; then
   nvim -E -s +PlugUpgrade +qa
