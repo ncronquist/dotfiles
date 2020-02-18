@@ -33,7 +33,14 @@ Plug 'airblade/vim-rooter'
 " Only supports syntax and indentation; Other features are skipped
 " If more functionality is needed for any lanuage, that specific language
 " plugin must be installed
+" let g:polyglot_disabled = ['go'] " Disabling go since we install go plugin below
 Plug 'sheerun/vim-polyglot'
+
+" Adds Go Support
+" Go syntax was already provided by vim-polyglot, but this plugin adds extra
+" functionality like running gofmt and goimports on save and adding code
+" completion
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Adds syntax highlighting for hashicorp sentinel language
 Plug 'hashicorp/sentinel.vim'
