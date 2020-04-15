@@ -35,6 +35,9 @@ Plug 'airblade/vim-rooter'
 " plugin must be installed
 Plug 'sheerun/vim-polyglot'
 
+" Adds syntax highlighting for hashicorp sentinel language
+Plug 'hashicorp/sentinel.vim'
+
 " Allows for quickly commenting/uncommenting code
 Plug 'preservim/nerdcommenter'
 
