@@ -22,6 +22,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Adds filetype icons to nerdtree
 Plug 'ryanoasis/vim-devicons'
 
+" Allows for inserting or deleting brackets, parens, and quotes in pairs
+Plug 'jiangmiao/auto-pairs'
+
 " Plugin to manage editorconfig
 " https://editorconfig.org/
 Plug 'editorconfig/editorconfig-vim'
