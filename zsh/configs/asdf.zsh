@@ -1,2 +1,2 @@
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+fpath=(${ASDF_DIR}/completions $fpath)
+
