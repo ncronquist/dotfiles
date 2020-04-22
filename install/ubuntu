@@ -251,7 +251,7 @@ get_dotfiles() {
     git clone https://github.com/ncronquist/dotfiles.git "${HOME}/.dotfiles"
   fi
 
-  cd "${HOME}/dotfiles"
+  cd "${HOME}/.dotfiles"
 
   # switch the remote to ssh and we'll assume an ssh key will be 
   # setup before trying to push any changes
