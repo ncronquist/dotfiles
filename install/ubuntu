@@ -239,6 +239,25 @@ install_pipx() {
   python3 -m pipx ensurepath
 }
 
+get_dotfiles() {
+	# create subshell
+  (
+  cd "$HOME"
+
+  if [[ ! -d "${HOME}/dotfiles" ]]; then
+    # install dotfiles from repo
+    # use https in case an ssh key hasn't been setup yet
+    git clone https://github.com/ncronquist/dotfiles.git "${HOME}/.dotfiles"
+  fi
+
+  cd "${HOME}/dotfiles"
+
+  # switch the remote to ssh and we'll assume an ssh key will be 
+  # setup before trying to push any changes
+  git remote set-url origin git@github.com:ncronquist/dotfiles.git
+  )
+}
+
 main() {
   local command="$1"
   case $command in
@@ -252,7 +271,6 @@ main() {
     base
     ;;
   "dotfiles")
-    get_user
     get_dotfiles
     ;;
   "asdf")
