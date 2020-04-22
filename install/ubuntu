@@ -244,7 +244,7 @@ get_dotfiles() {
   (
   cd "$HOME"
 
-  if [[ ! -d "${HOME}/dotfiles" ]]; then
+  if [[ ! -d "${HOME}/.dotfiles" ]]; then
     # install dotfiles from repo
     # use https in case an ssh key hasn't been setup yet
     echo "Cloning dotfiles into \$HOME/.dotfiles"
