@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Helper script to cleanup git branches
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+branches=$(git branch | grep -v \*)
+
+for branch in $branches
+do
+  read -p "Delete branch ${branch}? " yn
+  case $yn in
+      [Yy]* ) echo "${RED}>>> Deleting branch $branch${NC}" && git branch -D $branch;;
+      [Nn]* ) echo "${GREEN}>>> Next${NC}";;
+      * ) echo "Please answer yes or no.";;
+  esac
+done
+
+echo "${GREEN}COMPLETE!${NC}"
