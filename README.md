@@ -18,9 +18,13 @@ Prerequisites
 Installation
 ------------
 
-Todo: Automate this part with some sort of curl | script.
+Run the following command to download the dotfiles into your $HOME/.dotfiles directory.
 
-For now:
+```sh
+curl -s https://raw.githubusercontent.com/ncronquist/dotfiles/master/install/ubuntu | bash -s -- dotfiles
+```
+
+If you ran the script above, you can skip the first step below to clone the repository.
 
 - Clone this repo to `~/.dotfiles`
 - Change into the install directory
