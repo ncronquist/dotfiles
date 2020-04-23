@@ -253,11 +253,13 @@ get_dotfiles() {
 
   cd "${HOME}/.dotfiles"
 
-  # switch the remote to ssh and we'll assume an ssh key will be 
+  # switch the remote to ssh andk we'll assume an ssh key will be 
   # setup before trying to push any changes
   git remote set-url origin git@github.com:ncronquist/dotfiles.git
 
-  echo "Dotfiles are now available at \$HOME/.dotfiles.\nMove to that directory and run ./install/ubuntu to install the required dependencies."
+  echo -e 'Dotfiles are now available at $HOME/.dotfiles.'
+  echo -e 'Move to that directory and run "./install/ubuntu" to install the required dependencies.'
+  echo -e '\n\n  cd $HOME/.dotfiles\n  ./install/ubuntu\n'
   )
 }
 
