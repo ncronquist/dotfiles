@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# directory find and replace
+
+arg_or() {
+  local or="$1"
+  local arg="$2"
+  local val
+
+  if [[ -z "$arg" ]]; then
+    val="$or"
+  else
+    val="$arg"
+  fi
+
+  echo "${val}"
+}
+
+find_and_replace_all() {
+  local find_text=$1
+  local replace_text=$2
+  local dir=$(arg_or "." "${3}")
+
+  grep -rl "${find_text}" "${dir}" | xargs sed -i "s/${find_text}/${replace_text}/g"
+}
+
+find_and_replace_all $@
