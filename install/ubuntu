@@ -7,7 +7,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Versions
 V_NVIM=0.4.2 # https://github.com/neovim/neovim/releases
-V_TMUX=2.9   # https://github.com/tmux/tmux/releases
 
 usage() {
   echo "
@@ -87,26 +86,6 @@ install_nvim() {
   mv /tmp/nvim.appimage /usr/bin/nvim
 }
 
-install_tmux() {
-  rm -rf /tmp/tmux-${V_TMUX}
-  rm -rf /tmp/tmux-${V_TMUX}.tar.gz
-
-  curl -L https://github.com/tmux/tmux/releases/download/${V_TMUX}/tmux-${V_TMUX}.tar.gz -o /tmp/tmux-${V_TMUX}.tar.gz
-  tar xvzf /tmp/tmux-${V_TMUX}.tar.gz -C /tmp
-
-  # Create subshell
-  (
-    cd /tmp/tmux-${V_TMUX}
-
-    ./configure && make
-
-    make install
-  )
-
-  rm -rf /tmp/tmux-${V_TMUX}
-  rm -rf /tmp/tmux-${V_TMUX}.tar.gz
-}
-
 install_fzf() {
   if ! [[ -d "$HOME/.fzf" ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -127,7 +106,6 @@ install_fzf() {
 install_scripts() {
   install_if_missing nvim
   install_nvim_extras
-  install_if_missing tmux
   install_fzf
 }
 
@@ -253,7 +231,7 @@ get_dotfiles() {
 
   cd "${HOME}/.dotfiles"
 
-  # switch the remote to ssh andk we'll assume an ssh key will be 
+  # switch the remote to ssh andk we'll assume an ssh key will be
   # setup before trying to push any changes
   git remote set-url origin git@github.com:ncronquist/dotfiles.git
 
