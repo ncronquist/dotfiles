@@ -128,7 +128,6 @@ install_scripts() {
   install_if_missing nvim
   install_nvim_extras
   install_if_missing tmux
-  install_fzf
 }
 
 base_min() {
@@ -253,7 +252,7 @@ get_dotfiles() {
 
   cd "${HOME}/.dotfiles"
 
-  # switch the remote to ssh andk we'll assume an ssh key will be 
+  # switch the remote to ssh andk we'll assume an ssh key will be
   # setup before trying to push any changes
   git remote set-url origin git@github.com:ncronquist/dotfiles.git
 
@@ -283,6 +282,9 @@ main() {
     ;;
   "pipx")
     install_pipx
+    ;;
+  "fzf")
+    install_fzf
     ;;
   *)
     usage
