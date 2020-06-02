@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# ssh tunnel
+
+ssht() {
+  local port=$1
+
+  ssh -tt -q -L 127.0.0.1:${port}:localhost:${port} cronquin@cronquin-dev-env.security.nonprod.bxt.com
+}
+
+ssht $@
