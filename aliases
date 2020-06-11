@@ -32,3 +32,6 @@ fi
 # Terraform
 alias tf='terraform'
 alias s='sentinel'
+
+# Dotnet
+alias nuget="mono /usr/local/bin/nuget.exe"
