@@ -77,7 +77,7 @@ colorscheme nord
 set number                      " Show line numbers
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
-set clipboard+=unnamedplus      " Use the system clipboard by default
+set clipboard=unnamedplus      " Use the system clipboard by default
 set mouse=a                     " Enable mouse support
 set undofile                    " Save undos after file closes
 set undodir=~/.cache/vim        " where to save undo histories

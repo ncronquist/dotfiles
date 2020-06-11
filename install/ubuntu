@@ -161,6 +161,7 @@ base_min() {
     unixodbc-dev \
     unzip \
     w3m \
+    xclip \
     xz-utils \
     zip \
     zsh \
