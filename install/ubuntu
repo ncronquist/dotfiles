@@ -5,8 +5,6 @@ set -o pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
-# Versions
-V_NVIM=0.4.2 # https://github.com/neovim/neovim/releases
 
 usage() {
   echo "
@@ -74,18 +72,6 @@ setup_sources() {
     ppa:martin-frost/thoughtbot-rcm
 }
 
-install_nvim_extras() {
-  # Install python nvim integration
-  sudo -H -u "$TARGET_USER" pip2 install --user --upgrade pynvim
-  sudo -H -u "$TARGET_USER" pip3 install --user --upgrade pynvim
-}
-
-install_nvim() {
-  curl -L https://github.com/neovim/neovim/releases/download/v${V_NVIM}/nvim.appimage -o /tmp/nvim.appimage
-  chmod +x /tmp/nvim.appimage
-  mv /tmp/nvim.appimage /usr/bin/nvim
-}
-
 install_fzf() {
   if ! [[ -d "$HOME/.fzf" ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -101,11 +87,6 @@ install_fzf() {
   else
     echo "fzf already instealled; skipping"
   fi
-}
-
-install_scripts() {
-  install_if_missing nvim
-  install_nvim_extras
 }
 
 base_min() {

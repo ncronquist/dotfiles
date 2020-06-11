@@ -34,6 +34,28 @@ If you ran the script above, you can skip the first step below to clone the repo
 - Potentially want to restart your terminal
 
 
+### Extra Installs
+
+I use [asdf] to install and manage many different programs and runtimes. The
+following instructions are for my most common ones:
+
+- Neovim
+
+```
+asdf plugin add neovim
+
+sudo apt install python-neovim
+sudo apt install python3-neovim
+
+# Or
+
+pip2 install --user --upgrade pynvim
+pip3 install --user --upgrade pynvim
+```
+
+[asdf]: https://asdf-vm.com/
+
+
 Keyboard Shortcuts
 -------------------
 
