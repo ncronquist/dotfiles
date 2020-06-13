@@ -68,8 +68,11 @@ install_if_missing() {
 }
 
 setup_sources() {
-  add-apt-repository --yes \
-    ppa:martin-frost/thoughtbot-rcm
+  if [ ! $DISTRIB_CODENAME = 'focal' ]; then
+    # Older versions of ubuntu need the rcm repository added
+    add-apt-repository --yes \
+      ppa:martin-frost/thoughtbot-rcm
+  fi
 }
 
 install_fzf() {
@@ -146,7 +149,6 @@ base_min() {
     pkg-config \
     poppler-utils \
     python-chardet \
-    python-pip \
     python3-pip \
     ranger \
     rcm \
@@ -173,10 +175,7 @@ base_min() {
 
   # Upgrade setuptools
   # Setuptools is a tool to download, build, install, upgrade, and uninstall Python packages
-  sudo -H -u "$TARGET_USER" pip2 install --user --upgrade setuptools
   sudo -H -u "$TARGET_USER" pip3 install --user --upgrade setuptools
-
-  install_scripts
 
   chsh -s $(which zsh)
 }
@@ -229,6 +228,7 @@ main() {
     usage
     ;;
   "base")
+    . /etc/lsb-release
     check_is_sudo
     get_user
     setup_sources
