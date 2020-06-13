@@ -3,6 +3,19 @@ Dotfiles
 
 Dotfiles focused on creating an intuitive and beautiful terminal experience.
 
+![terminal-screenshot](https://i.imgur.com/GNjrYoK.png)
+
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Extra Installs](#extra-installs)
+- [Shell Commands and Aliases](#shell-commands-and-aliases)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+  - [Zsh](#zsh)
+  - [Tmux](#tmux)
+  - [Vim](#vim)
+- [Thanks](#thanks)
+
 
 Prerequisites
 --------------
@@ -31,29 +44,113 @@ If you ran the script above, you can skip the first step below to clone the repo
 - Run `sudo ./ubuntu base` to install the base requirements
 - Run `./ubuntu asdf` to install asdf, the runtime version manager
 - Run `./ubuntu pipx` to install pipx, for running python apps in virtual environments
-- Potentially want to restart your terminal
+- Restart your terminal
+- Install neovim (see below)
+- Change direcotories into the `~/.dotfiles` directory again and make sure you are in Tmux
+- Use rcm to configure the dotfiles
+
+  ```sh
+  rcup -v
+  ```
 
 
 ### Extra Installs
 
-I use [asdf] to install and manage many different programs and runtimes. The
-following instructions are for my most common ones:
+I use [asdf] to install and manage many different programs and runtimes. Read
+more about asdf and using the .tool-versions file to automatically set package
+versions on a per-project basis. The following instructions are for my most
+commonly used plugins:
 
 - Neovim
 
-```
-asdf plugin add neovim
+  ```sh
+  asdf plugin add neovim
 
-sudo apt install python-neovim
-sudo apt install python3-neovim
+  asdf list all neovim
 
-# Or
+  asdf install neovim {version}
 
-pip2 install --user --upgrade pynvim
-pip3 install --user --upgrade pynvim
-```
+  # Since I really only ever use one version of neovim at a time, set it globally
+  asdf global neovim {version}
+
+  sudo apt install python-neovim
+  sudo apt install python3-neovim
+
+  # Or
+
+  pip2 install --user --upgrade pynvim
+  pip3 install --user --upgrade pynvim
+  ```
+
+- Golang
+
+  ```sh
+  asdf plugin add golang
+
+  asdf list all golang
+
+  asdf install golang {version}
+
+  # Note that if you install global Go packages, you will need to
+  # reshim afterwards, for example:
+  go get github.com/yusukebe/revealgo/cmd/revealgo
+
+  asdf reshim golang {version}
+
+  # I also usually only work with one version of golang at a time, so set this
+  # globally too
+  asdf global golang {version}
+  ```
+
+- NodeJS
+
+  ```sh
+  asdf plugin add nodejs
+
+  # Import the Node.js release team's OpenPGP keys to main keyring:
+  bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+
+  asdf list all nodejs
+
+  asdf install nodejs {version}
+  ```
+
+- Direnv - to automatically configure environment variables in directories with
+  .envrc files
+
+  ```sh
+  asdf plugin add direnv
+
+  asdf list all direnv
+
+  asdf install direnv {version}
+
+  # Since I really only ever use one version of direnv at a time, set it globally
+  asdf global direnv {version}
+  ```
+
+- Terraform
+
+  ```sh
+  asdf plugin add terraform
+
+  asdf list all terraform
+
+  asdf install terraform {version}
+  ```
 
 [asdf]: https://asdf-vm.com/
+
+
+Shell Commands and Aliases
+---------------------------
+
+Command or Alias                        | Description
+----------------------------------------|-------------
+`fra {find-text} {replace-text} {dir}`  | Find and replace text in a directory
+`gbc`                                   | Interactively delete git branches
+`tat {tmux-session-name}`               | Start or attach to tmux session
+[Full Aliases List](./aliases)          |
 
 
 Keyboard Shortcuts
