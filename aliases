@@ -35,3 +35,7 @@ alias s='sentinel'
 
 # Dotnet
 alias nuget="mono /usr/local/bin/nuget.exe"
+
+# Network
+# Parse and Decode Jwt - assumes parsing from curl where body is json with access_token element
+alias pdj="jq -r .access_token | cut -d'.' -f2 | base64 --decode | jq ."
