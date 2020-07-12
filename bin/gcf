@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Git Checkout Full
+# Does a git checkout and git pull for a specified branch
+
+branch="$1"
+
+if [ "$branch" == '' ]; then
+  branch='main'
+fi
+
+git checkout ${branch} && git fetch origin && git rebase origin/${branch}
