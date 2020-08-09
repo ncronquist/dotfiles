@@ -54,6 +54,9 @@ Plug 'vim-airline/vim-airline-themes'
 " Nord theme - https://www.nordtheme.com/
 Plug 'arcticicestudio/nord-vim'
 
+" OneHalf theme - https://github.com/sonph/onehalf
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+
 call plug#end()
 
 
@@ -63,12 +66,26 @@ call plug#end()
 
 " Turn on highlighting for the current line number
 set cursorline
-let g:nord_cursor_line_number_background = 1
+" let g:nord_cursor_line_number_background = 1
 
 " Turn on the nord colorscheme
 " All configuration variables must be set **before** the colorscheme
 " activation command
-colorscheme nord
+" colorscheme nord
+
+" Turn on the onehalf dark colorscheme
+syntax on
+set t_Co=256
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'
+" colorscheme onehalflight
+" let g:airline_theme='onehalflight'
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
 
 "=====================================================================
 " Settings
