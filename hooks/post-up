@@ -22,3 +22,11 @@ if [[ ! -f '/etc/wsl.conf' ]]; then
   sudo cp ~/.dotfiles/etc/wsl.conf /etc/wsl.conf
 fi
 
+# Link the VsXsrv Configuration to the Correct Windows Directory
+# depending on Windows username
+if [[ -d '/c/Users/ncron' ]]; then
+  echo "Link config xlaunch"
+  ln -sf ~/.dotfiles/c/Users/user/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/config.xlaunch /c/Users/ncron/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/config.xlaunch
+elif [[ -d '/c/Users/cronquin' ]]; then
+  ln -sf ~/.dotfiles/c/Users/user/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/config.xlaunch /c/Users/cronquin/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/config.xlaunch
+fi
