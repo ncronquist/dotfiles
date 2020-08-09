@@ -11,7 +11,6 @@ alias rcode='ssh -tt -q -L 127.0.0.1:8080:localhost:8080 cronquin@cronquin-dev-e
 alias apt-remove='sudo apt-get purge'
 
 # Editor
-alias vi='nvim'
 alias vim='nvim'
 
 # Git Aliases
