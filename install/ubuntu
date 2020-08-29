@@ -150,6 +150,7 @@ base_min() {
     poppler-utils \
     python-chardet \
     python3-pip \
+    python3-venv \
     ranger \
     rcm \
     silversearcher-ag \
