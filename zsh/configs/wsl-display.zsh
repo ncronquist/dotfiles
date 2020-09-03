@@ -2,6 +2,7 @@
 if grep -q "microsoft" /proc/version &>/dev/null; then
     # Requires: https://sourceforge.net/projects/vcxsrv/ (or alternative)
     export DISPLAY="$(/sbin/ip route | awk '/default/ { print $3 }'):0"
+    export LIBGL_ALWAYS_INDIRECT=1
 fi
 
 # WSL 1 specific settings.
