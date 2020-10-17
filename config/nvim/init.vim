@@ -101,6 +101,25 @@ set hidden                      " Hide buffer with unsaved changes
 
 
 "=====================================================================
+" Temp WSL Copy workaround
+"=====================================================================
+
+" https://stackoverflow.com/questions/44480829/how-to-copy-to-clipboard-in-vim-of-bash-on-windows/61864749#61864749
+" Supposedly this shouldn't be necessary on Neovim, but it wasn't
+" working without it for me.
+" set clipboard=unnamed
+"
+" autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
+"
+" function! Paste(mode)
+"   let @" = system('win32yank.exe -o --lf')
+"   return a:mode
+" endfunction
+"
+" map <expr> p Paste('p')
+" map <expr> P Paste('P')
+
+"=====================================================================
 " Mappings
 "=====================================================================
 
