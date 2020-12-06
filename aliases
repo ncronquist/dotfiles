@@ -6,6 +6,7 @@ alias fdiff='diff --recursive --suppress-common-lines --minimal --side-by-side -
 alias ssha='eval $(ssh-agent -s) && ssh-add'
 alias sshdev='ssh cronquin@cronquin-dev-env.security.nonprod.bxt.com'
 alias rcode='ssh -tt -q -L 127.0.0.1:8080:localhost:8080 cronquin@cronquin-dev-env.security.nonprod.bxt.com code-server --auth none --disable-updates'
+alias awsd='docker run --rm --network=host -it -v ~/.aws:/root/.aws amazon/aws-cli'
 
 # Package Manager
 alias apt-remove='sudo apt-get purge'
