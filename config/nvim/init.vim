@@ -91,6 +91,12 @@ endif
 set number                      " Show line numbers
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
+
+" For WSL, there are a couple of ways to get copy/paste to work
+" One is to install an X-Server on Windows like VcXsrv and use xclip
+" on WSL to share the clipboard between WSL and Windows
+" The other option is to install win32yank.exe
+" https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
 set clipboard=unnamedplus      " Use the system clipboard by default
 set mouse=a                     " Enable mouse support
 set undofile                    " Save undos after file closes
@@ -98,26 +104,6 @@ set undodir=~/.cache/vim        " where to save undo histories
 set hidden                      " Hide buffer with unsaved changes
                                 "   instead of closing it when new
                                 "   buffers are opened
-
-
-"=====================================================================
-" Temp WSL Copy workaround
-"=====================================================================
-
-" https://stackoverflow.com/questions/44480829/how-to-copy-to-clipboard-in-vim-of-bash-on-windows/61864749#61864749
-" Supposedly this shouldn't be necessary on Neovim, but it wasn't
-" working without it for me.
-" set clipboard=unnamed
-"
-" autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
-"
-" function! Paste(mode)
-"   let @" = system('win32yank.exe -o --lf')
-"   return a:mode
-" endfunction
-"
-" map <expr> p Paste('p')
-" map <expr> P Paste('P')
 
 "=====================================================================
 " Mappings
