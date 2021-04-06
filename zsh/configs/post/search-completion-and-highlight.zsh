@@ -16,6 +16,9 @@ source "$HOME/.local/share/zsh/functions/zsh-history-substring-search"
 if [[ -z "$WSL_DISTRO_NAME" && -v "$WSLENV" ]]; then
   bindkey '^[[A' history-substring-search-up
   bindkey '^[[B' history-substring-search-down
+elif [[ $(uname) == "Darwin" ]]; then
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
 else
   bindkey "$terminfo[kcuu1]" history-substring-search-up
   bindkey "$terminfo[kcud1]" history-substring-search-down
