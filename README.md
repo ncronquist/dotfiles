@@ -21,10 +21,10 @@ Prerequisites
 --------------
 
 - Most of the dependencies will get automatically installed with the installation script, but fonts
-  must be installed separately. So far, I've only gotten delugia code to work, but in theory all
-  Powerline fonts should work
+  must be installed separately. All NerdFonts should work, but on Windows/WSL, I've been using
+  Delugia Code.
   - [Delugia Code](https://github.com/adam7/delugia-code)
-  - [Powerline Fonts GitHub](https://github.com/powerline/fonts)
+  - [Nerd Fonts](https://www.nerdfonts.com/)
   - [Install Powerline Fonts in Windows](https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58)
 
 
@@ -44,10 +44,31 @@ If you ran the script above, you can skip the first step below to clone the repo
 - Run `sudo ./ubuntu base` to install the base requirements
 - Run `./ubuntu asdf` to install asdf, the runtime version manager
 - Run `./ubuntu pipx` to install pipx, for running python apps in virtual environments
-- Restart your terminal
+- Run `./ubuntu fzf` to install fzf, for fuzzy file finding
+- Run `./ubuntu zsh-default` to set your default shell to zsh (You will be asked to log out and
+  log back in after this command)
 - Install neovim (see below)
-- Change direcotories into the `~/.dotfiles` directory again and make sure you are in Tmux
-- Use rcm to configure the dotfiles
+- Install tmux (see below)
+- Change directories into the `~/.dotfiles` directory again
+- Enter a tmux session
+
+  ```sh
+  tmux new -s dotfiles
+  ```
+- Use rcm to configure the dotfiles; This command will fail because the tmux plugin manager (tpm)
+  won't be ready the first time you run it
+
+  ```sh
+  rcup -v
+  ```
+- Restart your terminal
+- Change directories into the `~/.dotfiles` directory again
+- Enter a tmux session again
+
+  ```sh
+  tmux new -s dotfiles
+  ```
+- Use rcm one more time to fully configure the dotfiles
 
   ```sh
   rcup -v
@@ -80,6 +101,19 @@ commonly used plugins:
 
   pip2 install --user --upgrade pynvim
   pip3 install --user --upgrade pynvim
+  ```
+
+- Tmux
+
+  ```sh
+  asdf plugin add tmux
+
+  asdf list all tmux
+
+  asdf install tmux {version}
+
+  # Set tmux version globally
+  asdf global tmux {version}
   ```
 
 - Golang
