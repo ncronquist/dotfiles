@@ -22,10 +22,13 @@ Prerequisites
 
 - Most of the dependencies will get automatically installed with the installation script, but fonts
   must be installed separately. All NerdFonts should work, but on Windows/WSL, I've been using
-  Delugia Code.
-  - [Delugia Code](https://github.com/adam7/delugia-code)
+  Caskaydia Cove Nerd Font.
   - [Nerd Fonts](https://www.nerdfonts.com/)
-  - [Install Powerline Fonts in Windows](https://medium.com/@slmeng/how-to-install-powerline-fonts-in-windows-b2eedecace58)
+  - Install instructions
+    - Download the font you want
+    - Extract the zip file
+    - Double click the font file to open it with the Windows font tool
+    - Click the "Install" button in the Windows font tool
 
 
 Installation
@@ -56,7 +59,9 @@ If you ran the script above, you can skip the first step below to clone the repo
   ```sh
   tmux new -s dotfiles
   ```
-- Use rcm to configure the dotfiles; **This command will fail** because the tmux plugin manager(tpm) won't be ready the first time you run it. That's expected, so for any failure, first continue following the directions before trying to do any debugging.
+- Use rcm to configure the dotfiles; **This command will fail** because the tmux plugin manager 
+  (tpm) won't be ready the first time you run it. That's expected, so for any failure, first 
+  continue following the directions before trying to do any debugging.
 
   ```sh
   rcup -v
