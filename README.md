@@ -47,19 +47,21 @@ If you ran the script above, you can skip the first step below to clone the repo
 - Run `./ubuntu fzf` to install fzf, for fuzzy file finding
 - Run `./ubuntu zsh-default` to set your default shell to zsh (You will be asked to log out and
   log back in after this command)
-- Install neovim (see below)
-- Install tmux (see below)
+- Run `source ~/.asdf/asdf.sh` to source asdf and use it to install neovim and tmux
+  - Install neovim (see below)
+  - Install tmux (see below)
 - Change directories into the `~/.dotfiles` directory again
 - Enter a tmux session
 
   ```sh
   tmux new -s dotfiles
   ```
-- Use rcm to configure the dotfiles; This command will fail because the tmux plugin manager (tpm)
-  won't be ready the first time you run it
+- Use rcm to configure the dotfiles; **This command will fail** because the tmux plugin manager(tpm) won't be ready the first time you run it. That's expected, so for any failure, first continue following the directions before trying to do any debugging.
 
   ```sh
   rcup -v
+
+  # Enter "y" when it asks you to overwrite the .zshrc file
   ```
 - Restart your terminal
 - Change directories into the `~/.dotfiles` directory again
@@ -94,12 +96,10 @@ commonly used plugins:
   # Since I really only ever use one version of neovim at a time, set it globally
   asdf global neovim {version}
 
-  sudo apt install python-neovim
+  # Install the Python client for Neovim with apt
   sudo apt install python3-neovim
 
-  # Or
-
-  pip2 install --user --upgrade pynvim
+  # Or for non-Ubuntu users, use pip
   pip3 install --user --upgrade pynvim
   ```
 
@@ -125,15 +125,19 @@ commonly used plugins:
 
   asdf install golang {version}
 
+  # I also usually only work with one version of golang at a time, so set this
+  # globally too
+  asdf global golang {version}
+
+  # After install golang, you'll need to reload your session for
+  # GOROOT to be set
+  reload # Reload is an alias for "source /home/ncronquist/.zshrc"
+
   # Note that if you install global Go packages, you will need to
   # reshim afterwards, for example:
   go get github.com/yusukebe/revealgo/cmd/revealgo
 
   asdf reshim golang {version}
-
-  # I also usually only work with one version of golang at a time, so set this
-  # globally too
-  asdf global golang {version}
   ```
 
 - NodeJS
@@ -147,6 +151,19 @@ commonly used plugins:
   asdf list all nodejs
 
   asdf install nodejs {version}
+  ```
+
+- Dotnet
+
+  ```sh
+  asdf plugin add dotnet-core
+
+  asdf list all dotnet-core
+
+  asdf install dotnet-core {version}
+
+  # Since I generally only use one version of dotnet-core at a time, set it globally
+  asdf global dotnet-core {version}
   ```
 
 - Direnv - to automatically configure environment variables in directories with
