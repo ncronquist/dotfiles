@@ -197,6 +197,10 @@ function __clear_envs() {
   unset AWS_ACCESS_KEY_ID
   unset AWS_SECRET_ACCESS_KEY
   unset AWS_SESSION_TOKEN
+  unset AWS_CREDENTIAL_EXPIRATION
+  unset SAML2AWS_PROFILE
+  unset AWS_SECURITY_TOKEN
+  unset AWS_REGION
 }
 
 ################################################################################
