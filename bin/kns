@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Run a node project using  yarn with a specified NODE_ENV
+# - defaults to dev
+
+namespace="$1"
+shift
+
+kubectl --namespace=${namespace} ${@}

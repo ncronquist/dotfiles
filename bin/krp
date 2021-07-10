@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Run a pod with a specified image, serviceaccount, and command
+# - image defaults to busybox
+# - command defaults to sh
+# - serviceaccount defaults to default
+
+image="${1:-busybox}"
+cmd="${2:-sh}"
+serviceaccount="${3:-default}"
+
+kubectl run \
+  -i \
+  --rm \
+  --tty \
+  nick-debug \
+  --image="${image}" \
+  --restart=Never \
+  --serviceaccount ${serviceaccount} -- ${cmd}
