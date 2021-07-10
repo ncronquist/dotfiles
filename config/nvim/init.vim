@@ -68,13 +68,13 @@ set cursorline
 " Turn on the nord colorscheme
 " All configuration variables must be set **before** the colorscheme
 " activation command
-" colorscheme nord
+colorscheme nord
 
 " Turn on the onehalf dark colorscheme
 syntax on
 set t_Co=256
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
+" colorscheme onehalfdark
+" let g:airline_theme='onehalfdark'
 " colorscheme onehalflight
 " let g:airline_theme='onehalflight'
 
