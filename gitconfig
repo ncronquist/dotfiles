@@ -5,6 +5,7 @@
 [user]
 	name = Nicholas Cronquist
 	useConfigOnly = true
+	signingkey = B66BD69D768E40E1
 [commit]
 	template = ~/.gitmessage
 [fetch]
@@ -15,3 +16,5 @@
 	default = current
 [pull]
 	ff = only
+[gpg]
+	program = gpg2

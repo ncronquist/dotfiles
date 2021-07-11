@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Run a node project using  yarn with a specified NODE_ENV
+# - defaults to dev
+
+# env="$1"
+#
+# if [ "$env" == ''  ]; then
+#   env='dev'
+# fi
+#
+# NODE_ENV="${env}" yarn start
+
+
+ifconfig en0 inet | grep inet | awk '{print $2}'
