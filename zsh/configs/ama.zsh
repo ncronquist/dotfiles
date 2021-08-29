@@ -35,7 +35,15 @@ clear-envs, ce     Clear AWS environment variables from current shell
 
                    Example usage:
                    $ bcs clear-envs
-                   $ bcs ce"
+                   $ bcs ce
+
+profile, p         Sets the current AWS_PROFILE environment variable
+                   This may be useful when you have credentials set in the
+                   AWS credentials file, and just need to reference them.
+
+                   Example usage:
+                   $ aws profile sandbox
+                   $ aws p sandbox"
 }
 
 ################################################################################
@@ -181,6 +189,24 @@ function __mfa_session() {
 }
 
 ################################################################################
+# Sets AWS_PROFILE enviornment variable in the shell
+# Globals
+#   None
+# Arguments
+#   None
+# Returns
+#   None
+################################################################################
+function __set_profile() {
+  local profile="${1}"
+
+  # Clear other AWS environment variables to avoid issues
+  __clear_envs
+
+  export AWS_PROFILE="${profile}"
+}
+
+################################################################################
 # Unsets AWS MFA credentials from shell
 # Globals
 #   None
@@ -188,10 +214,6 @@ function __mfa_session() {
 #   None
 # Returns
 #   None
-# Un-Sets
-#   AWS_ACCESS_KEY_ID
-#   AWS_SECRET_ACCESS_KEY
-#   AWS_SESSION_TOKEN
 ################################################################################
 function __clear_envs() {
   unset AWS_ACCESS_KEY_ID
@@ -201,6 +223,7 @@ function __clear_envs() {
   unset SAML2AWS_PROFILE
   unset AWS_SECURITY_TOKEN
   unset AWS_REGION
+  unset AWS_PROFILE
 }
 
 ################################################################################
@@ -219,6 +242,10 @@ function ama() {
       ;;
     "clear-envs" | "ce")
       __clear_envs
+      ;;
+    "profile" | "p")
+      shift 1
+      __set_profile "$@"
       ;;
     *)
       __ama_usage
