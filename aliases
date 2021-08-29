@@ -32,6 +32,9 @@ alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(y
 
 # Directory Aliases
 alias pj='cd $HOME/Documents/projects'
+if [[ -d "$HOME/Documents/projects/assures" ]]; then
+  alias pja="cd $HOME/Documents/projects/assures"
+fi
 if [[ -d "/c/Users/cronquin/projects/notes" ]]; then
   alias n="cd /c/Users/cronquin/projects/notes"
 fi
