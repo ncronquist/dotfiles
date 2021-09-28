@@ -29,6 +29,8 @@ alias gbd='git branch -D'
 alias gco='git checkout'
 alias gcm='git checkout main && git pull && git pull origin main'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gclean='git clean --exclude .envrc --exclude .env --exclude .env* --exclude tmp.txt --exclude tmp.md -xdff'
+alias gcleancheck='git clean --exclude .envrc --exclude .env --exclude .env* --exclude tmp.txt --exclude tmp.md -xdffn'
 
 # Directory Aliases
 alias pj='cd $HOME/Documents/projects'
