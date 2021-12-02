@@ -13,6 +13,7 @@ alias kuc='kubectl config use-context'
 alias saws='saml2aws login --skip-prompt --idp-account'
 alias sslread='openssl x509 -noout -text -in'
 alias sslexpiration='openssl x509 -noout -enddate -in'
+alias docker-start='sudo service docker start'
 
 # Package Manager
 alias apt-remove='sudo apt-get purge'
