@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+
+# This is not an automated script yet unfortunately, just a list of commands I ran to install stuff so I don't forget
+
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew_install_or_upgrade 'coreutils'
+
+# shellcheck disable=SC2016
+append_to_zshrc 'export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"'
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
+brew_install_or_upgrade 'bash'
+brew_install_or_upgrade 'binutils'
+brew_install_or_upgrade 'diffutils'
+brew_install_or_upgrade 'ed' --with-default-names
+brew_install_or_upgrade 'findutils' --with-default-names
+brew_install_or_upgrade 'gawk'
+brew_install_or_upgrade 'gnu-indent' --with-default-names
+brew_install_or_upgrade 'gnu-sed' --with-default-names
+brew_install_or_upgrade 'gnu-tar' --with-default-names
+brew_install_or_upgrade 'gnu-which' --with-default-names
+brew_install_or_upgrade 'gnutls'
+brew_install_or_upgrade 'grep' --with-default-names
+brew_install_or_upgrade 'gzip'
+brew_install_or_upgrade 'watch'
+brew_install_or_upgrade 'wdiff' --with-gettext
+brew_install_or_upgrade 'wget'
+brew_install_or_upgrade 'ctags'
+brew_install_or_upgrade 'git'
+brew_install_or_upgrade 'openssl'
+brew_install_or_upgrade 'rcm'
+brew_install_or_upgrade 'reattach-to-user-namespace'
+brew_install_or_upgrade 'the_silver_searcher'
+brew_install_or_upgrade 'tmux'
+brew_install_or_upgrade 'vim'
+brew_install_or_upgrade 'zsh'
+brew_install_or_upgrade 'tree'
