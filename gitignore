@@ -4,3 +4,10 @@ node_modules
 tmp.auto.tfvars
 tmp.txt
 tmp.md
+tmp-notes/
+.vscode/
+# I try to keep .tool-versions files checked into source control, but
+# this is nice for working on projects that I don't own. If you do
+# need to add a .tool-versions file to source control you can use the
+# -f force argument for git - `git add -f .tool-versions`
+.tool-versions
