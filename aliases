@@ -7,6 +7,8 @@ alias ssha='eval $(ssh-agent -s) && ssh-add'
 alias sshdev='ssh cronquin@cronquin-dev-env.security.nonprod.bxt.com'
 alias rcode='ssh -tt -q -L 127.0.0.1:8080:localhost:8080 cronquin@cronquin-dev-env.security.nonprod.bxt.com code-server --auth none --disable-updates'
 alias awsd='docker run --rm --network=host -it -v ~/.aws:/root/.aws amazon/aws-cli'
+# awsl is an alias for working with localstack mocked aws resources
+alias awsl='AWS_ACCESS_KEY_ID=x AWS_SECRET_ACCESS_KEY=x aws --endpoint=http://localhost:4566'
 alias k='kubectl'
 alias ksc='kubectl config set-context --current --namespace'
 alias kuc='kubectl config use-context'
