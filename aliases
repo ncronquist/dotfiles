@@ -40,12 +40,25 @@ alias pj='cd $HOME/Documents/projects'
 if [[ -d "$HOME/Documents/projects/assures" ]]; then
   alias pja="cd $HOME/Documents/projects/assures"
 fi
+if [[ -d "$HOME/Documents/projects/ardo" ]]; then
+  alias pjar="cd $HOME/Documents/projects/ardo"
+fi
+if [[ -d "$HOME/Documents/projects/payments" ]]; then
+  alias pjp="cd $HOME/Documents/projects/payments"
+  alias pje="cd $HOME/Documents/projects/payments/experiments"
+  alias pjen="cd $HOME/Documents/projects/payments/experiments/nick-cronquist"
+  alias pjpi="cd $HOME/Documents/projects/payments/infrastructure"
+fi
+if [[ -d "$HOME/Documents/projects/platform" ]]; then
+  alias pjn="cd $HOME/Documents/projects/platform/neuron"
+fi
 if [[ -d "/c/Users/cronquin/projects/notes" ]]; then
   alias n="cd /c/Users/cronquin/projects/notes"
 fi
 
 # Terraform
 alias tf='terraform'
+alias tg='terragrunt'
 alias s='sentinel'
 
 # Dotnet
