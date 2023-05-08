@@ -1,2 +1,2 @@
 # https://github.com/emersonsoares/asdf-dotnet-core
-. ~/.asdf/plugins/dotnet-core/set-dotnet-home.zsh
+[ -f ~/.asdf/plugins/dotnet-core/set-dotnet-home.zsh ] && . ~/.asdf/plugins/dotnet-core/set-dotnet-home.zsh
