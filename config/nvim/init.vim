@@ -65,18 +65,30 @@ call plug#end()
 set cursorline
 " let g:nord_cursor_line_number_background = 1
 
-" Turn on the nord colorscheme
-" All configuration variables must be set **before** the colorscheme
-" activation command
-" colorscheme nord
-
-" Turn on the onehalf dark colorscheme
 syntax on
 set t_Co=256
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
+
+" --------------------------------------------------------------------
+" Colorscheme
+" All configuration variables must be set **before** the colorscheme
+" activation command
+" --------------------------------------------------------------------
+
+" Nord Theme
+colorscheme nord
+let g:airline_theme='nord_minimal'
+
+" Onehalf Dark Theme
+" colorscheme onehalfdark
+" let g:airline_theme='onehalfdark'
+
+" Onehalf Light Theme
 " colorscheme onehalflight
 " let g:airline_theme='onehalflight'
+
+" --------------------------------------------------------------------
+" End Colorscheme
+" --------------------------------------------------------------------
 
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
