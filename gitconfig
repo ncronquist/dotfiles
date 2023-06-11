@@ -17,4 +17,4 @@
 [pull]
 	ff = only
 [gpg]
-	program = gpg2
+	program = gpg
