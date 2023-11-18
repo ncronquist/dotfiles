@@ -9,6 +9,7 @@ alias rcode='ssh -tt -q -L 127.0.0.1:8080:localhost:8080 cronquin@cronquin-dev-e
 alias awsd='docker run --rm --network=host -it -v ~/.aws:/root/.aws amazon/aws-cli'
 # awsl is an alias for working with localstack mocked aws resources
 alias awsl='AWS_ACCESS_KEY_ID=x AWS_SECRET_ACCESS_KEY=x aws --endpoint=http://localhost:4566'
+alias p='pnpm'
 alias k='kubectl'
 alias ksc='kubectl config set-context --current --namespace'
 alias kuc='kubectl config use-context'
@@ -33,25 +34,12 @@ alias gco='git checkout'
 alias gcm='git checkout main && git pull && git pull origin main'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 # Use gcl alias with -n argument to do a dry-run
-alias gcl='git clean --exclude .envrc --exclude .env --exclude ".env*" --exclude tmp.txt --exclude tmp.md --exclude tmp-notes/ --exclude .vscode/settings.json -xdff'
+alias gcl='git clean --exclude .envrc --exclude .env --exclude ".env*" --exclude tmp.txt --exclude tmp.md --exclude tmp-notes/ --exclude .vscode/ --exclude .tool-versions -xdff'
+alias xcl='docker compose down && docker volume prune --all --force && rm -rf node_modules &&  git clean --exclude .envrc --exclude .env --exclude ".env*" --exclude tmp-notes/ --exclude .vscode/ --exclude .tool-versions -xdff'
+alias xup='docker compose up db redis -d && pnpm install && pnpm build && pnpm prisma:migrate:deploy'
 
 # Directory Aliases
 alias pj='cd $HOME/Documents/projects'
-if [[ -d "$HOME/Documents/projects/assures" ]]; then
-  alias pja="cd $HOME/Documents/projects/assures"
-fi
-if [[ -d "$HOME/Documents/projects/ardo" ]]; then
-  alias pjar="cd $HOME/Documents/projects/ardo"
-fi
-if [[ -d "$HOME/Documents/projects/payments" ]]; then
-  alias pjp="cd $HOME/Documents/projects/payments"
-  alias pje="cd $HOME/Documents/projects/payments/experiments"
-  alias pjen="cd $HOME/Documents/projects/payments/experiments/nick-cronquist"
-  alias pjpi="cd $HOME/Documents/projects/payments/infrastructure"
-fi
-if [[ -d "$HOME/Documents/projects/platform" ]]; then
-  alias pjn="cd $HOME/Documents/projects/platform/neuron"
-fi
 if [[ -d "/c/Users/cronquin/projects/notes" ]]; then
   alias n="cd /c/Users/cronquin/projects/notes"
 fi
