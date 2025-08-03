@@ -117,7 +117,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -157,12 +157,21 @@ require('lazy').setup({
     },
   },
 
+  -- {
+  --   -- Theme inspired by Atom
+  --   'navarasu/onedark.nvim',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'onedark'
+  --   end,
+  -- ,
+
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme "catppuccin-frappe" -- latte, frappe, macchiato, mocha
     end,
   },
 
@@ -190,7 +199,15 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      -- mappings = {
+      --  basic = false,
+      --  extra = false,
+      --},
+    }
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -211,6 +228,64 @@ require('lazy').setup({
         end,
       },
     },
+  },
+
+  -- File tree
+  {
+    'kyazdani42/nvim-tree.lua',
+    dependencies = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    config = function()
+      require('nvim-tree').setup {
+        auto_reload_on_write = true,
+        disable_netrw = true,
+        hijack_netrw = true,
+        -- open_on_setup = false,
+        -- ignore_ft_on_setup = {},
+        -- auto_close = true,
+        open_on_tab = false,
+        -- update_to_buf_dir = {
+        -- enable = true,
+        -- auto_open = true,
+        -- },
+        hijack_cursor = false,
+        update_cwd = true,
+        diagnostics = {
+          enable = false,
+          icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+          }
+        },
+        update_focused_file = {
+          enable = true,
+          update_cwd = true,
+          ignore_list = {}
+        },
+        system_open = {
+          cmd = nil,
+          args = {}
+        },
+        filters = {
+          dotfiles = false,
+          custom = {}
+        },
+        view = {
+          width = 30,
+          -- height = 30,
+          -- hide_root_folder = false,
+          side = 'left',
+          -- auto_resize = false,
+          -- mappings = {
+          -- custom_only = false,
+          -- list = {}
+          --}
+        }
+      }
+    end
   },
 
   {
@@ -334,6 +409,15 @@ vim.o.termguicolors = true
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap line comments for Comment.nvim
+vim.keymap.set('n', '<C-_>', function()
+  require('Comment.api').toggle.linewise.current()
+end, { desc = 'Toggle Comment', silent = true })
+
+vim.keymap.set('x', '<C-_>', function()
+  require('Comment.api').toggle.linewise(vim.fn.visualmode())
+end, { desc = 'Toggle Comment (Visual)', silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
