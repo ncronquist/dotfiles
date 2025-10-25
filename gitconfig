@@ -3,7 +3,7 @@
 	excludesFile = ~/.gitignore
 	autocrlf = input
 [user]
-	name = Nicholas Cronquist
+	name = Nick Cronquist
 	useConfigOnly = true
 	signingkey = B66BD69D768E40E1
 [commit]
@@ -23,3 +23,5 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[init]
+	defaultBranch = main
