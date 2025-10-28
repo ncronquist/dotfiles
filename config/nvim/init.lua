@@ -199,6 +199,18 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Keybinds for creating new window splits
+vim.keymap.set('n', '<leader>-', '<cmd>split<CR>', { desc = 'Split window horizontally' })
+vim.keymap.set('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
+
+-- Map <C-/> to toggle comments on the current line in normal mode
+vim.keymap.set('n', '<C-/>', 'gcc', { remap = true, desc = 'Toggle line comment' })
+vim.keymap.set('n', '<C-_>', 'gcc', { remap = true, desc = 'Toggle line comment' })
+
+-- Map <C-/> to toggle comments in visual mode
+vim.keymap.set('v', '<C-/>', 'gc', { remap = true, desc = 'Toggle selection comment' })
+vim.keymap.set('v', '<C-_>', 'gc', { remap = true, desc = 'Toggle selection comment' })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
