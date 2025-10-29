@@ -1,3 +1,5 @@
+-- Vim theme
+
 return {
   'catppuccin/nvim',
   priority = 1000,
