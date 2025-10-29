@@ -21,7 +21,7 @@ find_and_replace_all() {
   local replace_text=$2
   local dir=$(arg_or "." "${3}")
 
-  grep -rl "${find_text}" "${dir}" | xargs sed -i "s/${find_text}/${replace_text}/g"
+  grep -rl "${find_text}" "${dir}" | xargs gsed -i "s/${find_text}/${replace_text}/g"
 }
 
 find_and_replace_all $@

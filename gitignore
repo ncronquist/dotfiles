@@ -11,3 +11,7 @@ tmp-notes/
 # need to add a .tool-versions file to source control you can use the
 # -f force argument for git - `git add -f .tool-versions`
 .tool-versions
+TODO.md
+CLAUDE.md
+.claude/
+.local-entitlements.yaml

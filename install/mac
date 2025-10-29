@@ -1,0 +1,274 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+
+usage() {
+  echo "
+usage: mac <command> [<args>]
+
+base                      install base required packages
+dotfiles                  gets dotfiles
+asdf                      install asdf version manager
+pipx                      install pipx - for running python apps in virtual environments
+fzf                       install fzf - fuzzy file finder"
+}
+
+# Choose a user account to use for this installation
+get_user() {
+  readonly TARGET_USER="$(whoami)"
+  echo "Using user account: ${TARGET_USER}"
+}
+
+check_is_sudo() {
+  if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root."
+    exit
+  fi
+}
+
+setup_sources() {
+  # if [ ! $DISTRIB_CODENAME = 'focal' ]; then
+  #   # Older versions of ubuntu need the rcm repository added
+  #   add-apt-repository --yes \
+  #     ppa:martin-frost/thoughtbot-rcm
+  # fi
+  echo "No sources to setup"
+}
+
+install_fzf() {
+  if ! [[ -d "$HOME/.fzf" ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    # Install fzf using the fzf install script with the following arguments:
+    # - key-bindings - enable key bindings (ctrl-t, ctrl-r, alt-c)
+    # - completion - Enable fuzzy completion
+    # - no-update-rc - don't update the shell configuration files (it's already updated in this
+    #   dotfiles configuration
+    # - no-bash - since these dotfiles expect zsh
+    # - no-fish - since these dotfiles expect zsh
+    ~/.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+  else
+    echo "fzf already instealled; skipping"
+  fi
+}
+
+base_min() {
+#   dnf update || true
+#   dnf -y upgrade
+
+# # Install homebrew
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# brew_install_or_upgrade 'coreutils'
+
+# # shellcheck disable=SC2016
+# append_to_zshrc 'export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"'
+# export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
+
+  brew update
+
+  brew install \
+    coreutils \
+    gpg \
+    highlight \
+    imagemagick \
+    jq \
+    nvim \
+    odt2txt \
+    p7zip \
+    ranger \
+    rcm \
+    the_silver_searcher \
+    tmux \
+    tree \
+    wget
+
+  # brew install binutils
+  # brew install diffutils
+# brew install ed --with-default-names
+# brew install findutils --with-default-names
+# brew install gawk
+# brew install gnu-indent --with-default-names
+# brew install gnu-sed --with-default-names
+# brew install gnu-tar --with-default-names
+# brew install gnu-which --with-default-names
+# brew install gnutls
+# brew install grep --with-default-names
+# brew install gzip
+# brew install watch
+# brew install wdiff --with-gettext
+# brew install ctags
+# brew install git
+# brew install openssl
+# brew install reattach-to-user-namespace
+# brew install tmux
+# brew install vim
+# brew install zsh
+# brew install tree
+
+#   dnf groupinstall -y "Development Tools" "Development Libraries"
+
+#   dnf install -y \
+#     dnf-plugins-core \
+#     autoconf \
+#     automake \
+#     bind-utils \
+#     bison \
+#     bc \
+#     bzip2 \
+#     ca-certificates \
+#     caca-utils \
+#     calibre \
+#     coreutils \
+#     curl \
+#     dconf \
+#     dconf-devel \
+#     dconf-editor \
+#     djvulibre \
+#     ffmpegthumbs \
+#     file \
+#     findutils \
+#     fontforge \
+#     gcc \
+#     gcc-c++ \
+#     git \
+#     gnupg \
+#     gnupg2 \
+#     gpg \
+#     grep \
+#     gzip \
+#     highlight \
+#     hostname \
+#     ImageMagick \
+#     indent \
+#     jq \
+#     kernel-devel \
+#     less \
+#     glibc-devel \
+#     libevent-devel \
+#     libffi-devel \
+#     libimagequant-devel \
+#     ncurses-devel \
+#     readline-devel \
+#     openssl-devel \
+#     libtool \
+#     libyaml-devel \
+#     libxslt-devel \
+#     lsof \
+#     make \
+#     net-tools \
+#     odt2txt \
+#     p7zip \
+#     pkgconf-pkg-config \
+#     poppler-utils \
+#     python-chardet \
+#     python3-pip \
+#     python3-virtualenv \
+#     ranger \
+#     rcm \
+#     the_silver_searcher \
+#     openssh \
+#     strace \
+#     sudo \
+#     tar \
+#     transmission-cli \
+#     tree \
+#     tzdata \
+#     unixODBC-devel \
+#     unzip \
+#     util-linux-user \
+#     w3m \
+#     xclip \
+#     zip \
+#     zsh
+
+  python3 -m ensurepip --upgrade
+
+  echo "Finished installing depencies"
+
+  # dnf autoremove -y
+  # dnf clean all
+
+  # echo "Finished cleaning up."
+
+  # Upgrade setuptools
+  # Setuptools is a tool to download, build, install, upgrade, and uninstall Python packages
+  # sudo -H -u "$TARGET_USER" pip3 install --user --upgrade setuptools
+}
+
+base() {
+  base_min
+}
+
+install_asdf() {
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  (
+    cd ~/.asdf
+    git checkout "$(git describe --abbrev=0 --tags)"
+  )
+}
+
+install_pipx() {
+  python3 -m pip install --user pipx
+  python3 -m pipx ensurepath
+}
+
+get_dotfiles() {
+    # create subshell
+  (
+  cd "$HOME"
+
+  if [[ ! -d "${HOME}/.dotfiles" ]]; then
+    # install dotfiles from repo
+    # use https in case an ssh key hasn't been setup yet
+    echo "Cloning dotfiles into \$HOME/.dotfiles"
+    git clone https://github.com/ncronquist/dotfiles.git "${HOME}/.dotfiles"
+  fi
+
+  cd "${HOME}/.dotfiles"
+
+  # switch the remote to ssh andk we'll assume an ssh key will be
+  # setup before trying to push any changes
+  git remote set-url origin git@github.com:ncronquist/dotfiles.git
+
+  echo -e 'Dotfiles are now available at $HOME/.dotfiles.'
+  echo -e 'Move to that directory and run "./install/mac" to install the required dependencies.'
+  echo -e '\n\n  cd $HOME/.dotfiles\n  ./install/mac\n'
+  )
+}
+
+main() {
+  local command="$1"
+  case $command in
+  "" | "-h" | "--help")
+    usage
+    ;;
+  "base")
+    get_user
+    setup_sources
+    base
+    ;;
+  "dotfiles")
+    get_dotfiles
+    ;;
+  "asdf")
+    install_asdf
+    ;;
+  "pipx")
+    install_pipx
+    ;;
+  "fzf")
+    install_fzf
+    ;;
+  *)
+    echo "Command: $command"
+    shift 1
+    echo "Args: $@"
+    eval "$command $@"
+    ;;
+  esac
+}
+
+main "$@"
