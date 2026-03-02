@@ -9,3 +9,4 @@
 export ASDF_GO=$(asdf where golang)
 export GOPATH="$ASDF_GO/packages"
 export GOROOT="$ASDF_GO/go"
+export PATH="$PATH:$ASDF_GO/packages/bin"
