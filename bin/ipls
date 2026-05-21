@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# 1. Fetch WAN IP
+WAN_IP=$(curl -s ifconfig.me)
+
+# 2. Fetch LAN IP based on OS
+OS_TYPE=$(uname)
+
+if [ "$OS_TYPE" == "Darwin" ]; then
+    # macOS: Find the primary interface route and get its IP
+    PRIMARY_INTERFACE=$(route -n get default 2>/dev/null | awk '/interface:/ {print $2}')
+    if [ -n "$PRIMARY_INTERFACE" ]; then
+        LAN_IP=$(ifconfig "$PRIMARY_INTERFACE" 2>/dev/null | awk '/inet / {print $2}')
+    else
+        LAN_IP="No active connection"
+    fi
+elif [ "$OS_TYPE" == "Linux" ]; then
+    # Linux: Check if 'hostname -I' is available, otherwise fallback to 'ip route'
+    if command -v hostname >/dev/null 2>&1; then
+        LAN_IP=$(hostname -I | awk '{print $1}')
+    else
+        LAN_IP=$(ip route get 1.1.1.1 2>/dev/null | awk '/src/ {print $(NF-2)}')
+    fi
+else
+    LAN_IP="Unknown OS"
+fi
+
+# 3. Fetch Tailscale IP if tailscale is installed
+if command -v tailscale > /dev/null 2>&1; then
+    TAILSCALE_IP=$(tailscale ip -4 2>/dev/null)
+fi
+
+# 4. Output the formatting exactly as requested
+echo "WAN IP:       ${WAN_IP:-Unknown}"
+echo "LAN IP:       ${LAN_IP:-Unknown}"
+if [ -n "$TAILSCALE_IP" ]; then
+    echo "Tailscale IP: ${TAILSCALE_IP}"
+fi
