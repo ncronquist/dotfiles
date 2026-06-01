@@ -25,14 +25,25 @@ else
     LAN_IP="Unknown OS"
 fi
 
-# 3. Fetch Tailscale IP if tailscale is installed
+# 3. Fetch VPN IPs if supported clients are installed
 if command -v tailscale > /dev/null 2>&1; then
     TAILSCALE_IP=$(tailscale ip -4 2>/dev/null)
 fi
 
+if [ -x /opt/cisco/secureclient/bin/vpn ]; then
+    CISCO_VPN_BIN=/opt/cisco/secureclient/bin/vpn
+fi
+
+if [ -n "$CISCO_VPN_BIN" ]; then
+    CISCO_SECURE_CLIENT_IP=$("$CISCO_VPN_BIN" stats 2>/dev/null | grep 'Client Address (IPv4)' | awk -F': ' '{gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2); print $2; exit}')
+fi
+
 # 4. Output the formatting exactly as requested
-echo "WAN IP:       ${WAN_IP:-Unknown}"
-echo "LAN IP:       ${LAN_IP:-Unknown}"
+printf '%-14s%s\n' "WAN IP:" "${WAN_IP:-Unknown}"
+printf '%-14s%s\n' "LAN IP:" "${LAN_IP:-Unknown}"
 if [ -n "$TAILSCALE_IP" ]; then
-    echo "Tailscale IP: ${TAILSCALE_IP}"
+    printf '%-14s%s\n' "Tailscale IP:" "${TAILSCALE_IP}"
+fi
+if [ -n "$CISCO_SECURE_CLIENT_IP" ]; then
+    printf '%-14s%s\n' "Cisco VPN IP:" "${CISCO_SECURE_CLIENT_IP}"
 fi
